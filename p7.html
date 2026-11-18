@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dynamic task list</title>
+        <style>
+            body{
+                font-family:arial;
+                text-align:center;
+            }
+            li{
+                margin:10px;
+                padding:10px;
+                background:#eee;
+            }
+            button{
+                margin:3px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>task list</h2>
+
+        <input class="task" placeholder="enter task">
+
+        <button class="add">add</button>
+
+        <ul class="list"></ul>
+        
+        <script>
+            let input=document.querySelector(".task");
+            let add=document.querySelector(".add");
+            let list=document.querySelector(".list");
+
+            add.onclick=function(){
+                if(input.value.trim()=="")return;
+
+                let li=document.createElement("li");
+                li.innerHTML=input.value+'<button onclick="edit(this)">edit</button>'+'<button onclick="del(this)">delete</button>'
+
+                list.appendChild(li);
+                input.value="";
+            };
+            function edit(btn){
+                let li=btn.parentElement;
+                let text=prompt("edit task:",li.firstChild.textcontent.trim());
+
+                if(text)li.firstChild.textcontent=text+"";
+            }
+            function del(btn){
+                btn.parentElement.remove();
+            }
+        </script>
+         <h1>designed by keerthana</h1>
+    </body>
+</html>
